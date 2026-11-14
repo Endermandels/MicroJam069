@@ -8,6 +8,7 @@
 
 [node name="Spawner" type="Node" parent="." unique_id=1416020959 node_paths=PackedStringArray("player", "spawn_node", "spawn_points_parent")]
 script = ExtResource("1_4wyf3")
+spawn_interval = 1.0
 player = NodePath("../YSorted/Player")
 spawn_node = NodePath("../YSorted/CreatureSpawnArea")
 spawn_points_parent = NodePath(".")

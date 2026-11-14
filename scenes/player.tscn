@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7rcful5nwfsc"]
 
-[ext_resource type="Texture2D" uid="uid://dpli0e88wflg5" path="res://assets/visuals/characters/Skunk Sprite Sheet.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://dpli0e88wflg5" path="res://assets/assets/visuals/characters/Skunk Sprite Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cx15kujdxql07" path="res://scripts/player.gd" id="1_dqkch"]
 [ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="4_qlg0r"]
@@ -140,3 +140,8 @@ script = ExtResource("8_smehm")
 external_shoot_call = true
 body = NodePath("..")
 metadata/_custom_type_script = "uid://cbmx0x4a78jko"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=9057469]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
