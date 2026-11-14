@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://b7rcful5nwfsc"]
+
+[ext_resource type="Texture2D" uid="uid://dpli0e88wflg5" path="res://assets/visuals/characters/Skunk Sprite Sheet.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cx15kujdxql07" path="res://scripts/player.gd" id="1_dqkch"]
+[ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="4_qlg0r"]
+[ext_resource type="Script" uid="uid://2tsfiwdspwse" path="res://components/gun_component.gd" id="6_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://dc0do1ovo7l7j" path="res://scenes/spray.tscn" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://cvvijjv0cffej" path="res://components/move_input_component.gd" id="7_smehm"]
+[ext_resource type="Script" uid="uid://cbmx0x4a78jko" path="res://components/gun_input_component.gd" id="8_smehm"]
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "run"
+length = 0.6666750198684632
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15, 8]
+}
+
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "shoot"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.6666667, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qlg0r"]
+_data = {
+&"RESET": SubResource("Animation_qhqgy"),
+&"idle": SubResource("Animation_dqkch"),
+&"run": SubResource("Animation_qlg0r"),
+&"shoot": SubResource("Animation_smehm")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=1236140102 node_paths=PackedStringArray("move_inp_cmp", "gun_inp_cmp", "movement_cmp", "animation_cmp", "gun_cmp")]
+script = ExtResource("1_dqkch")
+move_inp_cmp = NodePath("MoveInputComponent")
+gun_inp_cmp = NodePath("GunInputComponent")
+movement_cmp = NodePath("MovementComponent")
+animation_cmp = NodePath("AnimationComponent")
+gun_cmp = NodePath("GunComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=465965378]
+position = Vector2(0, -16)
+texture = ExtResource("1_3vyb7")
+hframes = 8
+vframes = 5
+
+[node name="AnimationComponent" type="AnimationPlayer" parent="." unique_id=1183798367 node_paths=PackedStringArray("sprite")]
+libraries/ = SubResource("AnimationLibrary_qlg0r")
+autoplay = &"idle"
+script = ExtResource("2_g2els")
+sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://bam0t1cu515kb"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=115450685]
+script = ExtResource("4_qlg0r")
+metadata/_custom_type_script = "uid://nq7xqsfj83rt"
+
+[node name="GunComponent" type="Node2D" parent="." unique_id=1558545853]
+position = Vector2(0, -5)
+script = ExtResource("6_tuyoq")
+projectile = ExtResource("7_fjrip")
+metadata/_custom_type_script = "uid://2tsfiwdspwse"
+
+[node name="MoveInputComponent" type="Node" parent="." unique_id=1309015845 node_paths=PackedStringArray("body")]
+script = ExtResource("7_smehm")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://cvvijjv0cffej"
+
+[node name="GunInputComponent" type="Node" parent="." unique_id=1896534789 node_paths=PackedStringArray("body")]
+script = ExtResource("8_smehm")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://cbmx0x4a78jko"

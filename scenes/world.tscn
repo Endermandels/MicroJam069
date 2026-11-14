@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cm06rdwnt616m"]
+
+[ext_resource type="Script" uid="uid://s4q0l5b01gfs" path="res://scripts/spawner.gd" id="1_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://b7rcful5nwfsc" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://mef4u5e46q0v" path="res://scenes/fox.tscn" id="2_rwgxs"]
+
+[node name="World" type="Node2D" unique_id=2044448185]
+
+[node name="Spawner" type="Node" parent="." unique_id=1416020959 node_paths=PackedStringArray("player", "spawn_node", "spawn_points_parent")]
+script = ExtResource("1_4wyf3")
+player = NodePath("../YSorted/Player")
+spawn_node = NodePath("../YSorted/CreatureSpawnArea")
+spawn_points_parent = NodePath(".")
+spawnables = Array[PackedScene]([ExtResource("2_rwgxs")])
+
+[node name="Node2D" type="Node2D" parent="Spawner" unique_id=1356027716]
+position = Vector2(257, 94)
+
+[node name="Node2D2" type="Node2D" parent="Spawner" unique_id=26678782]
+position = Vector2(206, 189)
+
+[node name="YSorted" type="Node2D" parent="." unique_id=480642932]
+y_sort_enabled = true
+
+[node name="CreatureSpawnArea" type="Node2D" parent="YSorted" unique_id=1355778543]
+
+[node name="ProjectileSpawnArea" type="Node2D" parent="YSorted" unique_id=91693983]
+
+[node name="Player" parent="YSorted" unique_id=1236140102 node_paths=PackedStringArray("projectile_spawn") instance=ExtResource("1_nnsk1")]
+position = Vector2(99, 119)
+projectile_spawn = NodePath("../ProjectileSpawnArea")
