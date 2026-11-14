@@ -56,6 +56,10 @@ shoot={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Spray"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

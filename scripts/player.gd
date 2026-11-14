@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
             gun_inp_cmp.shoot = false
             gun_inp_cmp.shoot_vector = Vector2.ZERO
 
-    if not animation_cmp.current_animation == "shoot":
+    if animation_cmp.current_animation != "shoot":
         movement_cmp.accelerate(self, move_inp_cmp.move_vector)
     else:
         movement_cmp.decelerate(self)
