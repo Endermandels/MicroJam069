@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7rcful5nwfsc"]
 
-[ext_resource type="Texture2D" uid="uid://dpli0e88wflg5" path="res://assets/assets/visuals/characters/Skunk Sprite Sheet.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://dpli0e88wflg5" path="res://assets/visuals/characters/Skunk Sprite Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cx15kujdxql07" path="res://scripts/player.gd" id="1_dqkch"]
 [ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="4_qlg0r"]
@@ -98,7 +98,13 @@ _data = {
 &"shoot": SubResource("Animation_smehm")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_di8lm"]
+radius = 3.0
+height = 16.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1236140102 node_paths=PackedStringArray("move_inp_cmp", "gun_inp_cmp", "movement_cmp", "animation_cmp", "gun_cmp")]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_dqkch")
 move_inp_cmp = NodePath("MoveInputComponent")
 gun_inp_cmp = NodePath("GunInputComponent")
@@ -145,3 +151,8 @@ metadata/_custom_type_script = "uid://cbmx0x4a78jko"
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=281496861]
+position = Vector2(0, -3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_di8lm")

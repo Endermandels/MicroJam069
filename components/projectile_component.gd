@@ -22,6 +22,9 @@ enum ProjectileType {
 @export var anim_player: AnimationPlayer
 @export var hitbox: Hitbox
 
+@export_group("Resources")
+@export var explosion_aoe: PackedScene
+
 var input_vector: Vector2 = Vector2.RIGHT
 var accelerating: bool = true
 
@@ -78,6 +81,11 @@ func explode() -> void:
     anim_player.play("explode")
     await anim_player.animation_finished
     queue_free()
+
+func spawn_aoe() -> void:
+    var aoe: Node2D = explosion_aoe.instantiate()
+    aoe.global_position = global_position
+    get_parent().add_child(aoe)
 
 func start_decelerating() -> void:
     accelerating = false

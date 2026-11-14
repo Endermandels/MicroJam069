@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dc0do1ovo7l7j"]
 
 [ext_resource type="Script" uid="uid://dmy5e5kpo6tkf" path="res://components/projectile_component.gd" id="1_jnvml"]
+[ext_resource type="PackedScene" uid="uid://diw8a87hln2j8" path="res://scenes/stink_aoe.tscn" id="2_6tuoh"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="2_eutib"]
 [ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="4_6tuoh"]
 [ext_resource type="Texture2D" uid="uid://ch27dvkjym4yu" path="res://assets/visuals/fx/Water Projectile Sheet.png" id="4_8thdp"]
@@ -35,6 +36,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.33333334),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_aoe"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8thdp"]
@@ -77,6 +92,7 @@ sprite = NodePath("Sprite2D")
 movement_cmp = NodePath("MovementComponent")
 anim_player = NodePath("AnimationPlayer")
 hitbox = NodePath("Hitbox")
+explosion_aoe = ExtResource("2_6tuoh")
 metadata/_custom_type_script = "uid://dmy5e5kpo6tkf"
 
 [node name="MovementComponent" type="Node" parent="." unique_id=888203854]
