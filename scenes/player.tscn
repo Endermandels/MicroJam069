@@ -106,6 +106,7 @@ metadata/_custom_type_script = "uid://bam0t1cu515kb"
 
 [node name="MovementComponent" type="Node" parent="." unique_id=115450685]
 script = ExtResource("4_qlg0r")
+deceleration = 0.2
 metadata/_custom_type_script = "uid://nq7xqsfj83rt"
 
 [node name="GunComponent" type="Node2D" parent="." unique_id=1558545853]

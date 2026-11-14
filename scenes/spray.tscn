@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dmy5e5kpo6tkf" path="res://components/projectile_component.gd" id="1_jnvml"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="2_eutib"]
-[ext_resource type="Texture2D" uid="uid://b6qcroras3nn2" path="res://assets/visuals/fx/proj_water_small_sheet.png" id="3_eutib"]
+[ext_resource type="Texture2D" uid="uid://ch27dvkjym4yu" path="res://assets/visuals/fx/Water Projectile Sheet.png" id="4_8thdp"]
 
 [sub_resource type="Animation" id="Animation_eutib"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D2:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -17,6 +17,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6tuoh"]
+resource_name = "explode"
+length = 0.6666750198684632
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_8thdp"]
@@ -27,7 +44,7 @@ step = 0.16666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D2:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,21 +57,30 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6tuoh"]
 _data = {
 &"RESET": SubResource("Animation_eutib"),
+&"explode": SubResource("Animation_6tuoh"),
 &"traveling": SubResource("Animation_8thdp")
 }
 
-[node name="Spray" type="CharacterBody2D" unique_id=962162308 node_paths=PackedStringArray("movement_cmp")]
+[node name="Spray" type="CharacterBody2D" unique_id=962162308 node_paths=PackedStringArray("movement_cmp", "anim_player")]
+modulate = Color(1, 1, 0.25490198, 1)
 script = ExtResource("1_jnvml")
+projectile_type = 1
+grenade_explode_thresh = 100.0
 movement_cmp = NodePath("MovementComponent")
+anim_player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://dmy5e5kpo6tkf"
 
 [node name="MovementComponent" type="Node" parent="." unique_id=888203854]
 script = ExtResource("2_eutib")
+acceleration = 1.0
+deceleration = 0.05
+max_speed = 500.0
 metadata/_custom_type_script = "uid://nq7xqsfj83rt"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=270434986]
-texture = ExtResource("3_eutib")
-hframes = 4
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=765986574]
+texture = ExtResource("4_8thdp")
+hframes = 8
+vframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=582729903]
 libraries/ = SubResource("AnimationLibrary_6tuoh")

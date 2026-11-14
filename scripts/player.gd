@@ -15,8 +15,6 @@ func _process(_delta: float) -> void:
     animation_cmp.handle_facing_direction(self)
 
 func _physics_process(_delta: float) -> void:
-    var move_vector_override: Vector2 = move_inp_cmp.move_vector
-    
     if gun_inp_cmp.shoot:
         animation_cmp.shoot()
         if gun_inp_cmp.shoot_vector != Vector2.ZERO:
@@ -24,9 +22,9 @@ func _physics_process(_delta: float) -> void:
             gun_inp_cmp.shoot = false
             gun_inp_cmp.shoot_vector = Vector2.ZERO
 
-    if animation_cmp.current_animation == "shoot":
-        move_vector_override = Vector2.ZERO
-
-    movement_cmp.handle_movement(self, move_vector_override)
+    if not animation_cmp.current_animation == "shoot":
+        movement_cmp.accelerate(self, move_inp_cmp.move_vector)
+    else:
+        movement_cmp.decelerate(self)
 
     move_and_slide()
