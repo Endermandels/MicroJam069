@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://df5ulfl8lcg6r" path="res://assets/visuals/characters/Fox Sprite Sheet.png" id="1_ufccv"]
 [ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="2_35nom"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="3_35nom"]
-[ext_resource type="Script" uid="uid://hd2k5qds8mie" path="res://components/ai_component.gd" id="5_2g4xt"]
+[ext_resource type="Script" uid="uid://hd2k5qds8mie" path="res://scripts/ai_component.gd" id="5_2g4xt"]
 [ext_resource type="Script" uid="uid://pjsf6ev8sjh7" path="res://components/hurtbox.gd" id="6_2g4xt"]
 
 [sub_resource type="Animation" id="Animation_3u0el"]
@@ -69,13 +69,21 @@ _data = {
 radius = 9.0
 height = 26.0
 
-[node name="Fox" type="CharacterBody2D" unique_id=1491009193 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "hurtbox")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_di8lm"]
+radius = 23.086792
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywg1y"]
+radius = 9.055386
+
+[node name="Fox" type="CharacterBody2D" unique_id=1491009193 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "spray_hurtbox", "stink_hurtbox", "death_hurtbox")]
 collision_layer = 0
 script = ExtResource("1_brrv0")
 ai_cmp = NodePath("AIComponent")
 movement_cmp = NodePath("MovementComponent")
 animation_cmp = NodePath("AnimationComponent")
-hurtbox = NodePath("Hurtbox")
+spray_hurtbox = NodePath("SprayHurtbox")
+stink_hurtbox = NodePath("StinkHurtbox")
+death_hurtbox = NodePath("DeathHurtbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1559836190]
 position = Vector2(0, -16)
@@ -95,17 +103,40 @@ script = ExtResource("3_35nom")
 max_speed = 100.0
 metadata/_custom_type_script = "uid://nq7xqsfj83rt"
 
-[node name="AIComponent" type="Node" parent="." unique_id=1429489047 node_paths=PackedStringArray("body")]
+[node name="AIComponent" type="Node" parent="." unique_id=1429489047 node_paths=PackedStringArray("body", "movement_cmp")]
 script = ExtResource("5_2g4xt")
 global_player_ref = true
+fleeing_speed = 150.0
 body = NodePath("..")
+movement_cmp = NodePath("../MovementComponent")
 metadata/_custom_type_script = "uid://hd2k5qds8mie"
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=654532451]
+[node name="SprayHurtbox" type="Area2D" parent="." unique_id=654532451]
+collision_layer = 0
 script = ExtResource("6_2g4xt")
 metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=749772537]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SprayHurtbox" unique_id=749772537]
 position = Vector2(0, -7)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_neivv")
+
+[node name="StinkHurtbox" type="Area2D" parent="." unique_id=1776776761]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("6_2g4xt")
+metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StinkHurtbox" unique_id=578802480]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_di8lm")
+
+[node name="DeathHurtbox" type="Area2D" parent="." unique_id=453720766]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("6_2g4xt")
+metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathHurtbox" unique_id=2031694114]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_ywg1y")

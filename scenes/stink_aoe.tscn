@@ -2,33 +2,34 @@
 
 [ext_resource type="Script" uid="uid://c6qai8cqtvw2q" path="res://scripts/stink_aoe.gd" id="1_f6ni3"]
 [ext_resource type="Texture2D" uid="uid://4ec6nb7yer81" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0000.png" id="1_jsbqr"]
-[ext_resource type="Texture2D" uid="uid://dc6tmhernpmw0" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0000.png" id="1_nuvf5"]
-[ext_resource type="Texture2D" uid="uid://c4jv8hdb1m4ka" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0001.png" id="2_f6ni3"]
+[ext_resource type="Texture2D" uid="uid://dc6tmhernpmw0" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0000.png" id="1_nuvf5"]
+[ext_resource type="Texture2D" uid="uid://c4jv8hdb1m4ka" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0001.png" id="2_f6ni3"]
 [ext_resource type="Texture2D" uid="uid://dxa5wadpun4o0" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0001.png" id="2_jw01b"]
-[ext_resource type="Texture2D" uid="uid://dxpky1a4vapr5" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0002.png" id="3_2xirh"]
+[ext_resource type="Texture2D" uid="uid://dxpky1a4vapr5" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0002.png" id="3_2xirh"]
 [ext_resource type="Texture2D" uid="uid://3yg7ldc2pkp8" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0002.png" id="3_vfefy"]
-[ext_resource type="Texture2D" uid="uid://d0h8d40lrtew" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0003.png" id="4_hbatr"]
+[ext_resource type="Texture2D" uid="uid://d0h8d40lrtew" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0003.png" id="4_hbatr"]
 [ext_resource type="Texture2D" uid="uid://c1c6exv5jkts7" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0003.png" id="4_icdn3"]
 [ext_resource type="Texture2D" uid="uid://kqeat0p8p1ur" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0004.png" id="5_rgrwt"]
-[ext_resource type="Texture2D" uid="uid://b7vfwp5a5an6" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0004.png" id="5_tvxaf"]
+[ext_resource type="Texture2D" uid="uid://b7vfwp5a5an6" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0004.png" id="5_tvxaf"]
 [ext_resource type="Texture2D" uid="uid://b8w6wss5npghh" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0005.png" id="6_iyy54"]
-[ext_resource type="Texture2D" uid="uid://bm5mbrlu5oxrn" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0005.png" id="6_vru0u"]
-[ext_resource type="Texture2D" uid="uid://cxv7e27ay5uyr" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0006.png" id="7_bp8lu"]
+[ext_resource type="Texture2D" uid="uid://bm5mbrlu5oxrn" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0005.png" id="6_vru0u"]
+[ext_resource type="Texture2D" uid="uid://cxv7e27ay5uyr" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0006.png" id="7_bp8lu"]
 [ext_resource type="Texture2D" uid="uid://y3geuy1aqi73" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0006.png" id="7_rs8y3"]
-[ext_resource type="Texture2D" uid="uid://d2ifuytcrq5v3" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0007.png" id="8_2mfmu"]
+[ext_resource type="Texture2D" uid="uid://d2ifuytcrq5v3" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0007.png" id="8_2mfmu"]
 [ext_resource type="Texture2D" uid="uid://cu4plfk3ng36b" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0007.png" id="8_p3pfj"]
-[ext_resource type="Texture2D" uid="uid://bvvkayfxswkhf" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0008.png" id="9_5jhp2"]
+[ext_resource type="Texture2D" uid="uid://bvvkayfxswkhf" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0008.png" id="9_5jhp2"]
 [ext_resource type="Texture2D" uid="uid://jhtyljimm841" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0008.png" id="9_bsoox"]
 [ext_resource type="Texture2D" uid="uid://c1w0jihqi615h" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0009.png" id="10_5yyr2"]
-[ext_resource type="Texture2D" uid="uid://beodhb67600rj" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0009.png" id="10_m8t81"]
+[ext_resource type="Texture2D" uid="uid://beodhb67600rj" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0009.png" id="10_m8t81"]
 [ext_resource type="Texture2D" uid="uid://crr2edf1i3dy" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0010.png" id="11_if8tb"]
-[ext_resource type="Texture2D" uid="uid://d2hltk8jtb04r" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0010.png" id="11_sh8xu"]
+[ext_resource type="Texture2D" uid="uid://d2hltk8jtb04r" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0010.png" id="11_sh8xu"]
 [ext_resource type="Texture2D" uid="uid://bcxwvstwc3e0o" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0011.png" id="12_33dha"]
-[ext_resource type="Texture2D" uid="uid://cwn1gaxrdxcit" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001/stylized_skull_smoke_burst_001_large_white/frame0011.png" id="12_jn32v"]
+[ext_resource type="Texture2D" uid="uid://cwn1gaxrdxcit" path="res://assets/visuals/fx/stylized_skull_smoke_burst_001_large_white/frame0011.png" id="12_jn32v"]
 [ext_resource type="Texture2D" uid="uid://cxlt711w565t" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0012.png" id="13_nuvf5"]
 [ext_resource type="Texture2D" uid="uid://dooqj06mefngn" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0013.png" id="14_f6ni3"]
 [ext_resource type="Texture2D" uid="uid://fkhr162kqve5" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0014.png" id="15_2xirh"]
 [ext_resource type="Texture2D" uid="uid://b8c8rsahmtshp" path="res://assets/visuals/fx/looping_smoke_burst_002_large_gray/frame0015.png" id="16_hbatr"]
+[ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="30_2xirh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e0ifq"]
 animations = [{
@@ -124,14 +125,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_jn32v")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_di8lm"]
-radius = 38.029594
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywg1y"]
+radius = 23.0
 
 [node name="StinkAOE" type="Node2D" unique_id=2113922584]
 modulate = Color(0.3499999, 1, 0.25, 0.41568628)
@@ -141,17 +145,19 @@ script = ExtResource("1_f6ni3")
 [node name="Sustain" type="AnimatedSprite2D" parent="." unique_id=951833919]
 sprite_frames = SubResource("SpriteFrames_e0ifq")
 autoplay = "default"
-frame_progress = 0.07703384
+frame_progress = 0.854605
 
 [node name="Bloom" type="AnimatedSprite2D" parent="." unique_id=1330908923]
 sprite_frames = SubResource("SpriteFrames_ywg1y")
 autoplay = "default"
-frame = 11
+frame = 12
 frame_progress = 1.0
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1149232266]
+[node name="Hitbox" type="Area2D" parent="." unique_id=26967208]
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("30_2xirh")
+metadata/_custom_type_script = "uid://b10w4fm8kyuou"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=505431319]
-shape = SubResource("CircleShape2D_di8lm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=27643391]
+shape = SubResource("CircleShape2D_ywg1y")
