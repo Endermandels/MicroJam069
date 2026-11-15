@@ -15,6 +15,11 @@ run/main_scene="uid://cm06rdwnt616m"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Hud="*uid://b8ads8he0023h"
+HudScript="*uid://28d0sbjqwbtk"
+
 [display]
 
 window/size/viewport_width=360
@@ -62,6 +67,7 @@ shoot={
 2d_physics/layer_2="Wall"
 2d_physics/layer_3="StinkAOE"
 2d_physics/layer_4="Death"
+2d_physics/layer_5="Pumpkin"
 
 [physics]
 

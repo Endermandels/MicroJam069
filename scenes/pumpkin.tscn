@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dmr8uuvix7il2"]
+
+[ext_resource type="Texture2D" uid="uid://bgrl2o1jc24te" path="res://assets/visuals/items/item335.png" id="1_qdl88"]
+[ext_resource type="Script" uid="uid://bnveo00klqviy" path="res://scripts/pumpkin.gd" id="2_8p3yo"]
+[ext_resource type="Script" uid="uid://pjsf6ev8sjh7" path="res://components/hurtbox.gd" id="2_ch6vm"]
+[ext_resource type="Script" uid="uid://1b4k5q3xypiq" path="res://components/stats.gd" id="4_2inn6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di8lm"]
+radius = 7.0044627
+
+[sub_resource type="Animation" id="Animation_8p3yo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2inn6"]
+resource_name = "invincible"
+length = 1.6666833830043672
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334, 1, 1.1666666, 1.3333334, 1.5, 1.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(18.892157, 2.1899235, 2.1899235, 1), Color(1, 1, 1, 1), Color(18.892157, 2.1899235, 2.1899235, 1), Color(1, 1, 1, 1), Color(18.892157, 2.1899235, 2.1899235, 1), Color(1, 1, 1, 1), Color(18.892157, 2.1899235, 2.1899235, 1), Color(1, 1, 1, 1), Color(18.892157, 2.1899235, 2.1899235, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kanjq"]
+_data = {
+&"RESET": SubResource("Animation_8p3yo"),
+&"invincible": SubResource("Animation_2inn6")
+}
+
+[node name="Pumpkin" type="Sprite2D" unique_id=1647926657 node_paths=PackedStringArray("hurtbox", "anim_player", "stats")]
+scale = Vector2(4, 4)
+texture = ExtResource("1_qdl88")
+hframes = 4
+script = ExtResource("2_8p3yo")
+hurtbox = NodePath("Hurtbox")
+anim_player = NodePath("AnimationPlayer")
+stats = NodePath("Stats")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1523646381]
+visible = false
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("2_ch6vm")
+metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=768065138]
+shape = SubResource("CircleShape2D_di8lm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1136374852]
+libraries/ = SubResource("AnimationLibrary_kanjq")
+
+[node name="Stats" type="Node" parent="." unique_id=1446951264]
+script = ExtResource("4_2inn6")
+metadata/_custom_type_script = "uid://1b4k5q3xypiq"

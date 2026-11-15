@@ -9,3 +9,6 @@ SoggySocks (https://soggysocksstudio.itch.io/)
 
 # Smoke FX
 unTied Games (https://untiedgames.itch.io/)
+
+# Pumpkin
+Glionox (https://glionox.itch.io/)
