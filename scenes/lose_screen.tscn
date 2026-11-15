@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dhu3hinomju0f"]
+
+[ext_resource type="Script" uid="uid://dfyk303u1k71g" path="res://components/fade_in_component.gd" id="1_uglf1"]
+
+[node name="LoseScreen" type="CanvasLayer" unique_id=1280424885]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1942784795]
+offset_left = 48.0
+offset_top = 88.0
+offset_right = 312.0
+offset_bottom = 155.0
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1806131462]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Game Over"
+
+[node name="FadeInComponent" type="Node" parent="." unique_id=603698933 node_paths=PackedStringArray("target")]
+script = ExtResource("1_uglf1")
+target = NodePath("../PanelContainer")

@@ -7,10 +7,16 @@ class_name Pumpkin
 @export var stats: Stats
 @export var sprite: Sprite2D
 
+signal pumpkin_gone
+
 func _physics_process(_delta: float) -> void:
 	if hurtbox.stored_hitbox != null and not anim_player.is_playing():
 		take_hit()
-		start_invincibility()
+		if stats.hp > 0:
+			start_invincibility()
+		else:
+			pumpkin_gone.emit()
+			queue_free()
 
 func take_hit() -> void:
 	stats.hp -= hurtbox.stored_hitbox.stats.dmg

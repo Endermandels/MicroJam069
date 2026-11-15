@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cm06rdwnt616m"]
 
+[ext_resource type="Script" uid="uid://dnse5xofdre6o" path="res://scripts/world.gd" id="1_4mrxx"]
 [ext_resource type="Script" uid="uid://s4q0l5b01gfs" path="res://scripts/spawner.gd" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://b7rcful5nwfsc" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://mef4u5e46q0v" path="res://scenes/fox.tscn" id="2_rwgxs"]
@@ -7,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://kgjt0yhv6nvr" path="res://assets/visuals/tilesets/Forest Trees Tileset.png" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="6_qfnet"]
 [ext_resource type="PackedScene" uid="uid://dmr8uuvix7il2" path="res://scenes/pumpkin.tscn" id="7_i7141"]
+[ext_resource type="PackedScene" uid="uid://dhu3hinomju0f" path="res://scenes/lose_screen.tscn" id="8_4mrxx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_di8lm"]
 size = Vector2(66, 1472)
@@ -317,7 +319,11 @@ terrain_set_0/terrain_0/name = "Trees"
 terrain_set_0/terrain_0/color = Color(1, 0.34509805, 0.2509804, 1)
 sources/0 = SubResource("TileSetAtlasSource_71j4m")
 
-[node name="World" type="Node2D" unique_id=2044448185]
+[node name="World" type="Node2D" unique_id=2044448185 node_paths=PackedStringArray("player", "pumpkin")]
+script = ExtResource("1_4mrxx")
+player = NodePath("YSorted/Player")
+pumpkin = NodePath("Pumpkin")
+lose_screen = ExtResource("8_4mrxx")
 
 [node name="DeathHitboxes" type="Node2D" parent="." unique_id=1775102686]
 
