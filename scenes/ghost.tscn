@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://hd2k5qds8mie" path="res://scripts/ai_component.gd" id="4_lv6vd"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="5_sv5gc"]
 [ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="6_lv6vd"]
+[ext_resource type="AudioStream" uid="uid://bevdmgn5foxek" path="res://assets/sfx/synth(1).wav" id="7_sv5gc"]
 
 [sub_resource type="Animation" id="Animation_lv6vd"]
 length = 0.001
@@ -88,6 +89,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [10, 11, 12, 13, 14, 15, 16]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.083333336),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_seks5"]
 resource_name = "spawn"
@@ -162,3 +177,7 @@ metadata/_custom_type_script = "uid://b10w4fm8kyuou"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=658189612]
 position = Vector2(0, -17)
 shape = SubResource("CircleShape2D_di8lm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1338663781]
+stream = ExtResource("7_sv5gc")
+pitch_scale = 0.5

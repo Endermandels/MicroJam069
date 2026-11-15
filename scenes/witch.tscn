@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://pjsf6ev8sjh7" path="res://components/hurtbox.gd" id="5_53435"]
 [ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="8_80ajc"]
 [ext_resource type="Script" uid="uid://1b4k5q3xypiq" path="res://components/stats.gd" id="9_tw4fk"]
+[ext_resource type="AudioStream" uid="uid://bevdmgn5foxek" path="res://assets/sfx/synth(1).wav" id="10_tw4fk"]
 
 [sub_resource type="Animation" id="Animation_xk447"]
 length = 0.001
@@ -111,6 +112,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [50, 51, 52, 53]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vid1f"]
 _data = {
@@ -205,3 +220,7 @@ metadata/_custom_type_script = "uid://1b4k5q3xypiq"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PumpkinHitbox" unique_id=979526476]
 position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_ywg1y")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=746757147]
+stream = ExtResource("10_tw4fk")
+pitch_scale = 0.4
