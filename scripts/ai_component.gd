@@ -23,7 +23,8 @@ enum State {
     FLEEING,
     AVOIDING_STINK,
     COUGHING,
-    FAINTING
+    FAINTING,
+    ATTACKING
 }
 
 @export_group("Settings")
@@ -54,11 +55,11 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
     match state:
         State.CHASING:
-            if global_player_ref and player_ref != null:
+            if player_ref != null:
                 move_vector = body.global_position.direction_to(player_ref.global_position)
         
         State.FLEEING:
-            if global_player_ref and player_ref != null:
+            if player_ref != null:
                 move_vector = body.global_position.direction_to(player_ref.global_position).rotated(deg_to_rad(180))
         
         State.AVOIDING_STINK:
@@ -75,6 +76,11 @@ func _physics_process(_delta: float) -> void:
         State.FAINTING:
             move_vector = Vector2.ZERO
             body.velocity = Vector2.ZERO
+    
+        State.ATTACKING:
+            move_vector = Vector2.ZERO
+            if player_ref != null:
+                body.global_position = player_ref.global_position
 
 func handle_spray_hurtbox(hurtbox: Hurtbox) -> void:
     if hurtbox != null and hurtbox.stored_hitbox != null:
@@ -103,5 +109,14 @@ func handle_stink_hurtbox(hurtbox: Hurtbox) -> void:
                     state = State.COUGHING
                     hurtbox.stored_hitbox = null
 
+func handle_attack_hitbox(hitbox: Hitbox) -> void:
+    if hitbox != null and hitbox.hit_something:
+        if state != State.FLEEING and state != State.FAINTING and state != State.COUGHING:
+            state = State.ATTACKING
+
 func determine_ghost_spawn() -> bool:
     return randf() < chance_to_spawn_ghost
+
+func done_attacking() -> void:
+    if state == State.ATTACKING:
+        state = State.CHASING

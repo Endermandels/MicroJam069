@@ -8,6 +8,7 @@ class_name Creature
 @export var spray_hurtbox: Hurtbox
 @export var stink_hurtbox: Hurtbox
 @export var death_hurtbox: Hurtbox
+@export var attack_hitbox: Hitbox
 
 @export_group("Resources")
 @export var ghost_res: PackedScene
@@ -21,12 +22,15 @@ func _physics_process(_delta: float) -> void:
     if death_hurtbox != null and death_hurtbox.stored_hitbox != null:
         queue_free()
 
+    ai_cmp.handle_attack_hitbox(attack_hitbox)
     ai_cmp.handle_spray_hurtbox(spray_hurtbox)
     ai_cmp.handle_stink_hurtbox(stink_hurtbox)
     if ai_cmp.state == ai_cmp.State.COUGHING:
         animation_cmp.cough()
     if ai_cmp.state == ai_cmp.State.FAINTING and not faint_started:
         faint()
+    if ai_cmp.state == ai_cmp.State.ATTACKING:
+        animation_cmp.custom_animation("attack")
 
     movement_cmp.accelerate(self, ai_cmp.move_vector)
     
@@ -47,4 +51,6 @@ func spawn_ghost() -> void:
     if ai_cmp.determine_ghost_spawn():
         var ghost: Creature = ghost_res.instantiate()
         ghost.global_position = global_position
+        if ghost.ai_cmp.global_player_ref and ai_cmp.player_ref != null:
+            ghost.ai_cmp.player_ref = ai_cmp.player_ref
         get_parent().add_child(ghost)

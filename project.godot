@@ -68,6 +68,7 @@ shoot={
 2d_physics/layer_3="StinkAOE"
 2d_physics/layer_4="Death"
 2d_physics/layer_5="Pumpkin"
+2d_physics/layer_6="Ghost"
 
 [physics]
 

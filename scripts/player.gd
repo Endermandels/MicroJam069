@@ -10,11 +10,17 @@ class_name Player
 @export var movement_cmp: MovementComponent
 @export var animation_cmp: AnimationComponent
 @export var gun_cmp: GunComponent
+@export var ghost_hurtbox: Hurtbox
+@export var possessed_timer: Timer
 
 func _process(_delta: float) -> void:
     animation_cmp.handle_facing_direction(self)
 
 func _physics_process(_delta: float) -> void:
+    if ghost_hurtbox.stored_hitbox != null and possessed_timer.is_stopped():
+        possessed_timer.start()
+        animation_cmp.custom_animation("possessed")
+
     if gun_inp_cmp.shoot:
         animation_cmp.shoot()
         if gun_inp_cmp.shoot_vector != Vector2.ZERO:
@@ -22,9 +28,11 @@ func _physics_process(_delta: float) -> void:
             gun_inp_cmp.shoot = false
             gun_inp_cmp.shoot_vector = Vector2.ZERO
 
-    if animation_cmp.current_animation != "shoot":
-        movement_cmp.accelerate(self, move_inp_cmp.move_vector)
-    else:
+    if animation_cmp.current_animation == "shoot":
         movement_cmp.decelerate(self)
+    elif not possessed_timer.is_stopped():
+        movement_cmp.accelerate(self, move_inp_cmp.move_vector.rotated(deg_to_rad(180)))
+    else:
+        movement_cmp.accelerate(self, move_inp_cmp.move_vector)
 
     move_and_slide()

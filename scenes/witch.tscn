@@ -135,6 +135,7 @@ script = ExtResource("3_53435")
 global_player_ref = true
 spray_reaction = 3
 stink_reaction = 1
+chance_to_spawn_ghost = 1.0
 body = NodePath("..")
 movement_cmp = NodePath("../MovementComponent")
 metadata/_custom_type_script = "uid://hd2k5qds8mie"
