@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dpli0e88wflg5" path="res://assets/visuals/characters/Skunk Sprite Sheet.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cx15kujdxql07" path="res://scripts/player.gd" id="1_dqkch"]
 [ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://cclgsab4r0f1v" path="res://assets/visuals/fx/Shadows.png" id="2_ur7pv"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://2tsfiwdspwse" path="res://components/gun_component.gd" id="6_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://dc0do1ovo7l7j" path="res://scenes/spray.tscn" id="7_fjrip"]
@@ -111,6 +112,12 @@ gun_inp_cmp = NodePath("GunInputComponent")
 movement_cmp = NodePath("MovementComponent")
 animation_cmp = NodePath("AnimationComponent")
 gun_cmp = NodePath("GunComponent")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1235085448]
+modulate = Color(1, 1, 1, 0.4862745)
+position = Vector2(1, -15)
+texture = ExtResource("2_ur7pv")
+hframes = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=465965378]
 position = Vector2(0, -16)

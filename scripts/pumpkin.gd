@@ -1,25 +1,26 @@
-extends Sprite2D
+extends Node2D
 class_name Pumpkin
 
 @export_group("Internal Nodes")
 @export var hurtbox: Hurtbox
 @export var anim_player: AnimationPlayer
 @export var stats: Stats
+@export var sprite: Sprite2D
 
 func _physics_process(_delta: float) -> void:
-    if hurtbox.stored_hitbox != null and not anim_player.is_playing():
-        take_hit()
-        start_invincibility()
+	if hurtbox.stored_hitbox != null and not anim_player.is_playing():
+		take_hit()
+		start_invincibility()
 
 func take_hit() -> void:
-    stats.hp -= hurtbox.stored_hitbox.stats.dmg
-    var hp_ratio: float = float(stats.hp) / stats.max_hp
-    frame = clampi(hframes - ceili(hframes * hp_ratio), 0, hframes - 1)
-    Hud.update_pumpkin_health_bar(stats.hp, stats.max_hp)
-    hurtbox.stored_hitbox = null
+	stats.hp -= hurtbox.stored_hitbox.stats.dmg
+	var hp_ratio: float = float(stats.hp) / stats.max_hp
+	sprite.frame = clampi(sprite.hframes - ceili(sprite.hframes * hp_ratio), 0, sprite.hframes - 1)
+	Hud.update_pumpkin_health_bar(stats.hp, stats.max_hp)
+	hurtbox.stored_hitbox = null
 
 func start_invincibility() -> void:
-    anim_player.play("invincible")
-    hurtbox.monitoring = false
-    await anim_player.animation_finished
-    hurtbox.monitoring = true
+	anim_player.play("invincible")
+	hurtbox.monitoring = false
+	await anim_player.animation_finished
+	hurtbox.monitoring = true

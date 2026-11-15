@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bnveo00klqviy" path="res://scripts/pumpkin.gd" id="2_8p3yo"]
 [ext_resource type="Script" uid="uid://pjsf6ev8sjh7" path="res://components/hurtbox.gd" id="2_ch6vm"]
 [ext_resource type="Script" uid="uid://1b4k5q3xypiq" path="res://components/stats.gd" id="4_2inn6"]
+[ext_resource type="Texture2D" uid="uid://cclgsab4r0f1v" path="res://assets/visuals/fx/Shadows.png" id="5_kanjq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di8lm"]
 radius = 7.0044627
@@ -46,14 +47,23 @@ _data = {
 &"invincible": SubResource("Animation_2inn6")
 }
 
-[node name="Pumpkin" type="Sprite2D" unique_id=1647926657 node_paths=PackedStringArray("hurtbox", "anim_player", "stats")]
+[node name="Pumpkin" type="Node2D" unique_id=1937965723 node_paths=PackedStringArray("hurtbox", "anim_player", "stats", "sprite")]
 scale = Vector2(4, 4)
-texture = ExtResource("1_qdl88")
-hframes = 4
 script = ExtResource("2_8p3yo")
 hurtbox = NodePath("Hurtbox")
 anim_player = NodePath("AnimationPlayer")
 stats = NodePath("Stats")
+sprite = NodePath("Sprite2D2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=860717176]
+modulate = Color(1, 1, 1, 0.5568628)
+position = Vector2(0, -9)
+texture = ExtResource("5_kanjq")
+hframes = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1041256646]
+texture = ExtResource("1_qdl88")
+hframes = 4
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1523646381]
 collision_layer = 0
