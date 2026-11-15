@@ -57,11 +57,12 @@ sprite = NodePath("Sprite2D2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=860717176]
 modulate = Color(1, 1, 1, 0.5568628)
-position = Vector2(0, -9)
+position = Vector2(0, -14.25)
 texture = ExtResource("5_kanjq")
 hframes = 3
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1041256646]
+position = Vector2(0, -5.25)
 texture = ExtResource("1_qdl88")
 hframes = 4
 

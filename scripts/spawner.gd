@@ -10,6 +10,7 @@ class_name Spawner
 
 @export_group("External Nodes")
 @export var player: Player
+@export var pumpkin: Pumpkin
 @export var spawn_node: Node
 @export var spawn_points_parent: Node
 
@@ -35,8 +36,8 @@ func start_increase_rate_timer() -> void:
 func spawn() -> void:
     if not disabled:
         var spawned: Creature = spawnables.pick_random().instantiate()
-        if spawned.ai_cmp.global_player_ref:
-            spawned.ai_cmp.player_ref = player
+        spawned.ai_cmp.player_ref = player
+        spawned.ai_cmp.pumpkin_ref = pumpkin
         spawned.global_position = spawn_points_parent.get_children().pick_random().global_position
         spawn_node.add_child(spawned)
         start_spawn_timer()

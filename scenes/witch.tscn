@@ -25,6 +25,23 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_80ajc"]
+resource_name = "attack"
+length = 0.6666750198684632
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24, 25, 26, 27]
+}
+
 [sub_resource type="Animation" id="Animation_vid1f"]
 resource_name = "cough"
 length = 0.3333416766010225
@@ -98,6 +115,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vid1f"]
 _data = {
 &"RESET": SubResource("Animation_xk447"),
+&"attack": SubResource("Animation_80ajc"),
 &"cough": SubResource("Animation_vid1f"),
 &"faint": SubResource("Animation_1g4oy"),
 &"idle": SubResource("Animation_53435"),
@@ -113,13 +131,14 @@ radius = 18.027756
 [sub_resource type="CircleShape2D" id="CircleShape2D_ywg1y"]
 radius = 6.0
 
-[node name="Witch" type="CharacterBody2D" unique_id=1161243924 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "spray_hurtbox", "stink_hurtbox")]
+[node name="Witch" type="CharacterBody2D" unique_id=1161243924 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "spray_hurtbox", "stink_hurtbox", "attack_hitbox")]
 script = ExtResource("1_qrkn2")
 ai_cmp = NodePath("AIComponent")
 movement_cmp = NodePath("MovementComponent")
 animation_cmp = NodePath("AnimationComponent")
 spray_hurtbox = NodePath("SprayHurtbox")
 stink_hurtbox = NodePath("StinkHurtbox")
+attack_hitbox = NodePath("PumpkinHitbox")
 ghost_res = ExtResource("2_vid1f")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1067763952]
@@ -138,7 +157,7 @@ metadata/_custom_type_script = "uid://bam0t1cu515kb"
 [node name="AIComponent" type="Node" parent="." unique_id=1771217211 node_paths=PackedStringArray("body", "movement_cmp")]
 script = ExtResource("3_53435")
 global_player_ref = true
-spray_reaction = 3
+spray_reaction = 2
 stink_reaction = 1
 body = NodePath("..")
 movement_cmp = NodePath("../MovementComponent")

@@ -8,7 +8,6 @@ Makes decisions for creatures
 enum SprayReaction {
     FLEE,
     IGNORE,
-    STUN_THEN_FLEE,
     FAINT
 }
 
@@ -29,8 +28,10 @@ enum State {
 
 @export_group("Settings")
 @export var global_player_ref: bool = false
+@export var global_pumpkin_ref: bool = false
 @export var spray_reaction: SprayReaction = SprayReaction.FLEE
 @export var stink_reaction: StinkReaction = StinkReaction.AVOID_STINK
+@export var possess_on_attack: bool = false
 @export var fleeing_speed: float = 400 ## For Fleeing creatures only
 @export var chance_to_spawn_ghost: float = 0.1 ## For Fainting creatures only
 
@@ -42,6 +43,7 @@ const AVOID_STINK_TIME: float = 0.5
 
 var state: State = State.CHASING
 var player_ref: Player = null # Set on spawn or through a detection system
+var pumpkin_ref: Pumpkin = null # Set on spawn or through a detection system
 var stink_aoe_ref: Node2D = null
 var move_vector: Vector2 = Vector2.ZERO
 var repulsion_timer: Timer = Timer.new()
@@ -55,7 +57,9 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
     match state:
         State.CHASING:
-            if player_ref != null:
+            if global_pumpkin_ref and pumpkin_ref != null:
+                move_vector = body.global_position.direction_to(pumpkin_ref.global_position)
+            if global_player_ref and player_ref != null:
                 move_vector = body.global_position.direction_to(player_ref.global_position)
         
         State.FLEEING:
@@ -79,7 +83,7 @@ func _physics_process(_delta: float) -> void:
     
         State.ATTACKING:
             move_vector = Vector2.ZERO
-            if player_ref != null:
+            if player_ref != null and possess_on_attack:
                 body.global_position = player_ref.global_position
 
 func handle_spray_hurtbox(hurtbox: Hurtbox) -> void:
@@ -110,6 +114,11 @@ func handle_stink_hurtbox(hurtbox: Hurtbox) -> void:
                     hurtbox.stored_hitbox = null
 
 func handle_attack_hitbox(hitbox: Hitbox) -> void:
+    if state != State.CHASING:
+        hitbox.monitorable = false
+    else:
+        hitbox.monitorable = true
+
     if hitbox != null and hitbox.hit_something:
         if state != State.FLEEING and state != State.FAINTING and state != State.COUGHING:
             state = State.ATTACKING

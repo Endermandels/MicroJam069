@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://fk1j4gstv0r1"]
+
+[ext_resource type="Script" uid="uid://cswkimor8w2uq" path="res://scripts/creature.gd" id="1_0rs5k"]
+[ext_resource type="Texture2D" uid="uid://bdlde2ophy03b" path="res://assets/visuals/characters/Ghoul Sprite Sheet.png" id="1_pn4bt"]
+[ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="2_ei4jr"]
+[ext_resource type="Script" uid="uid://hd2k5qds8mie" path="res://scripts/ai_component.gd" id="3_fxkcu"]
+[ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="4_0rs5k"]
+[ext_resource type="Script" uid="uid://pjsf6ev8sjh7" path="res://components/hurtbox.gd" id="6_bwnnb"]
+[ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="7_bwnnb"]
+[ext_resource type="Script" uid="uid://1b4k5q3xypiq" path="res://components/stats.gd" id="8_waqgy"]
+
+[sub_resource type="Animation" id="Animation_bwnnb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ei4jr"]
+resource_name = "attack"
+length = 0.5000083482347428
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_fxkcu"]
+resource_name = "cough"
+length = 0.666683353202045
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_waqgy"]
+resource_name = "idle"
+length = 0.666683353202045
+loop_mode = 2
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_f26u8"]
+resource_name = "run"
+length = 0.6666750198684632
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j1tky"]
+_data = {
+&"RESET": SubResource("Animation_bwnnb"),
+&"attack": SubResource("Animation_ei4jr"),
+&"cough": SubResource("Animation_fxkcu"),
+&"idle": SubResource("Animation_waqgy"),
+&"run": SubResource("Animation_f26u8")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di8lm"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywg1y"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e0ifq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cgdp"]
+
+[node name="Ghoul" type="CharacterBody2D" unique_id=1026815767 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "spray_hurtbox", "stink_hurtbox", "death_hurtbox", "attack_hitbox")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_0rs5k")
+ai_cmp = NodePath("AIComponent")
+movement_cmp = NodePath("MovementComponent")
+animation_cmp = NodePath("AnimationComponent")
+spray_hurtbox = NodePath("SprayHurtbox")
+stink_hurtbox = NodePath("StinkHurtbox")
+death_hurtbox = NodePath("DeathHurtbox")
+attack_hitbox = NodePath("PumpkinHitbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=146080499]
+position = Vector2(0, -16)
+texture = ExtResource("1_pn4bt")
+hframes = 8
+vframes = 5
+
+[node name="AnimationComponent" type="AnimationPlayer" parent="." unique_id=1196731576 node_paths=PackedStringArray("sprite")]
+libraries/ = SubResource("AnimationLibrary_j1tky")
+autoplay = &"idle"
+script = ExtResource("2_ei4jr")
+sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://bam0t1cu515kb"
+
+[node name="AIComponent" type="Node" parent="." unique_id=376470851 node_paths=PackedStringArray("body", "movement_cmp")]
+script = ExtResource("3_fxkcu")
+global_pumpkin_ref = true
+stink_reaction = 1
+fleeing_speed = 300.0
+body = NodePath("..")
+movement_cmp = NodePath("../MovementComponent")
+metadata/_custom_type_script = "uid://hd2k5qds8mie"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=757170030]
+script = ExtResource("4_0rs5k")
+acceleration = 0.05
+max_speed = 175.0
+metadata/_custom_type_script = "uid://nq7xqsfj83rt"
+
+[node name="SprayHurtbox" type="Area2D" parent="." unique_id=1403586149]
+collision_layer = 0
+script = ExtResource("6_bwnnb")
+metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SprayHurtbox" unique_id=1699221224]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_di8lm")
+
+[node name="StinkHurtbox" type="Area2D" parent="." unique_id=1022232744]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("6_bwnnb")
+metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StinkHurtbox" unique_id=500524224]
+position = Vector2(0, -14)
+shape = SubResource("CircleShape2D_ywg1y")
+
+[node name="DeathHurtbox" type="Area2D" parent="." unique_id=844570325]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("6_bwnnb")
+metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathHurtbox" unique_id=2043831978]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_e0ifq")
+
+[node name="PumpkinHitbox" type="Area2D" parent="." unique_id=141392427 node_paths=PackedStringArray("stats")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("7_bwnnb")
+stats = NodePath("Stats")
+metadata/_custom_type_script = "uid://b10w4fm8kyuou"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PumpkinHitbox" unique_id=138733054]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_5cgdp")
+
+[node name="Stats" type="Node" parent="PumpkinHitbox" unique_id=1546534302]
+script = ExtResource("8_waqgy")
+dmg = 1
+metadata/_custom_type_script = "uid://1b4k5q3xypiq"

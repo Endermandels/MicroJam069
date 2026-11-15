@@ -8,7 +8,7 @@ var anim_lock: bool = false
 var disabled: bool = false
 
 func handle_facing_direction(body: CharacterBody2D) -> void:
-	if not anim_lock and not disabled:
+	if (current_animation == "idle" or current_animation == "run" or not is_playing()) and not disabled:
 		var ang: float = rad_to_deg(body.velocity.angle())
 		
 		if body.velocity.length() > 10 and current_animation != "run":
@@ -37,6 +37,3 @@ func faint() -> void:
 func custom_animation(anim_name: String):
 	if current_animation != anim_name and not disabled:
 		play(anim_name)
-		anim_lock = true
-		await animation_finished
-		anim_lock = false

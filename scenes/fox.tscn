@@ -25,6 +25,23 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_p8a3a"]
+resource_name = "attack"
+length = 0.9166750273190438
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334, 0.6666667, 0.75, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52]
+}
+
 [sub_resource type="Animation" id="Animation_brrv0"]
 resource_name = "idle"
 length = 0.8333500248357654
@@ -64,6 +81,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2g4xt"]
 _data = {
 &"RESET": SubResource("Animation_3u0el"),
+&"attack": SubResource("Animation_p8a3a"),
 &"idle": SubResource("Animation_brrv0"),
 &"run": SubResource("Animation_2g4xt")
 }
@@ -82,7 +100,7 @@ radius = 9.055386
 radius = 3.0
 height = 22.0
 
-[node name="Fox" type="CharacterBody2D" unique_id=1491009193 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "spray_hurtbox", "stink_hurtbox", "death_hurtbox")]
+[node name="Fox" type="CharacterBody2D" unique_id=1491009193 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "spray_hurtbox", "stink_hurtbox", "death_hurtbox", "attack_hitbox")]
 collision_layer = 0
 script = ExtResource("1_brrv0")
 ai_cmp = NodePath("AIComponent")
@@ -91,6 +109,7 @@ animation_cmp = NodePath("AnimationComponent")
 spray_hurtbox = NodePath("SprayHurtbox")
 stink_hurtbox = NodePath("StinkHurtbox")
 death_hurtbox = NodePath("DeathHurtbox")
+attack_hitbox = NodePath("PumpkinHitbox")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=655138247]
 modulate = Color(1, 1, 1, 0.43529412)

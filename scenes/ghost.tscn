@@ -143,6 +143,7 @@ script = ExtResource("4_lv6vd")
 global_player_ref = true
 spray_reaction = 1
 stink_reaction = 2
+possess_on_attack = true
 body = NodePath("..")
 movement_cmp = NodePath("../MovementComponent")
 metadata/_custom_type_script = "uid://hd2k5qds8mie"
