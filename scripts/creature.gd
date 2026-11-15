@@ -47,7 +47,6 @@ func faint() -> void:
     tween.tween_callback(queue_free)
 
 func spawn_ghost() -> void:
-    print("spawn ghost")
     if ai_cmp.determine_ghost_spawn():
         var ghost: Creature = ghost_res.instantiate()
         ghost.global_position = global_position

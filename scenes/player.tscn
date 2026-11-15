@@ -125,7 +125,65 @@ height = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_di8lm"]
 radius = 9.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1236140102 node_paths=PackedStringArray("move_inp_cmp", "gun_inp_cmp", "movement_cmp", "animation_cmp", "gun_cmp", "ghost_hurtbox", "possessed_timer")]
+[sub_resource type="Animation" id="Animation_3v2ag"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d2wvv"]
+resource_name = "possessed"
+length = 1.0000166964694857
+loop_mode = 1
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2.4061394, 2.4061394, 2.4061394, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jej6c"]
+resource_name = "possessed_fast"
+length = 0.3333416766010225
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2.4061394, 2.4061394, 2.4061394, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3v2ag"]
+_data = {
+&"RESET": SubResource("Animation_3v2ag"),
+&"possessed": SubResource("Animation_d2wvv"),
+&"possessed_fast": SubResource("Animation_jej6c")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=1236140102 node_paths=PackedStringArray("move_inp_cmp", "gun_inp_cmp", "movement_cmp", "animation_cmp", "possessed_anim_player", "gun_cmp", "ghost_hurtbox", "possessed_timer")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_dqkch")
@@ -133,6 +191,7 @@ move_inp_cmp = NodePath("MoveInputComponent")
 gun_inp_cmp = NodePath("GunInputComponent")
 movement_cmp = NodePath("MovementComponent")
 animation_cmp = NodePath("AnimationComponent")
+possessed_anim_player = NodePath("PossessedAnimationPlayer")
 gun_cmp = NodePath("GunComponent")
 ghost_hurtbox = NodePath("GhostHurtbox")
 possessed_timer = NodePath("PossessedTimer")
@@ -183,11 +242,13 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=281496861]
+visible = false
 position = Vector2(0, -3)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_di8lm")
 
 [node name="GhostHurtbox" type="Area2D" parent="." unique_id=1694235816]
+visible = false
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("10_y4r1p")
@@ -200,3 +261,6 @@ shape = SubResource("CircleShape2D_di8lm")
 [node name="PossessedTimer" type="Timer" parent="." unique_id=1641392836]
 wait_time = 30.0
 one_shot = true
+
+[node name="PossessedAnimationPlayer" type="AnimationPlayer" parent="." unique_id=666743726]
+libraries/ = SubResource("AnimationLibrary_3v2ag")
