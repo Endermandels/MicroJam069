@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dpmeaghpouyca" path="res://assets/visuals/characters/Witch Sprite Sheet.png" id="1_hgjeu"]
 [ext_resource type="Script" uid="uid://cswkimor8w2uq" path="res://scripts/creature.gd" id="1_qrkn2"]
+[ext_resource type="PackedScene" uid="uid://ydnw3dklp4fx" path="res://scenes/ghost.tscn" id="2_vid1f"]
 [ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="2_xk447"]
 [ext_resource type="Script" uid="uid://hd2k5qds8mie" path="res://scripts/ai_component.gd" id="3_53435"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="4_qrkn2"]
@@ -41,8 +42,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_1g4oy"]
 resource_name = "faint"
-length = 0.8333416915021836
-step = 0.083333336
+length = 1.6666833830043672
+step = 0.16666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,7 +51,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334, 0.6666667, 0.75),
+"times": PackedFloat32Array(0, 0.16666669, 0.33333334, 0.5, 0.6666667, 0.8333333, 1, 1.1666667, 1.3333334, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
@@ -114,6 +115,7 @@ movement_cmp = NodePath("MovementComponent")
 animation_cmp = NodePath("AnimationComponent")
 spray_hurtbox = NodePath("SprayHurtbox")
 stink_hurtbox = NodePath("StinkHurtbox")
+ghost_res = ExtResource("2_vid1f")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1067763952]
 position = Vector2(0, -16)
@@ -128,14 +130,13 @@ script = ExtResource("2_xk447")
 sprite = NodePath("../Sprite2D")
 metadata/_custom_type_script = "uid://bam0t1cu515kb"
 
-[node name="AIComponent" type="Node" parent="." unique_id=1771217211 node_paths=PackedStringArray("body", "movement_cmp", "animation_cmp")]
+[node name="AIComponent" type="Node" parent="." unique_id=1771217211 node_paths=PackedStringArray("body", "movement_cmp")]
 script = ExtResource("3_53435")
 global_player_ref = true
 spray_reaction = 3
 stink_reaction = 1
 body = NodePath("..")
 movement_cmp = NodePath("../MovementComponent")
-animation_cmp = NodePath("../AnimationComponent")
 metadata/_custom_type_script = "uid://hd2k5qds8mie"
 
 [node name="MovementComponent" type="Node" parent="." unique_id=1000117574]
