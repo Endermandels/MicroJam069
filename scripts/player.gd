@@ -10,6 +10,7 @@ class_name Player
 @export var movement_cmp: MovementComponent
 @export var animation_cmp: AnimationComponent
 @export var possessed_anim_player: AnimationPlayer
+@export var hurt_anim_player: AnimationPlayer
 @export var gun_cmp: GunComponent
 @export var ghost_hurtbox: Hurtbox
 @export var attack_hurtbox: Hurtbox
@@ -38,12 +39,12 @@ func _physics_process(_delta: float) -> void:
     if attack_hurtbox.stored_hitbox != null:
         var dmg = attack_hurtbox.stored_hitbox.stats.dmg
         attack_hurtbox.stored_hitbox = null
-        if possessed_anim_player.current_animation != "hurt":
+        if hurt_anim_player.current_animation != "hurt" and stats.hp > 0:
             stats.hp -= dmg
             health_bar.value = stats.hp
             if stats.hp > 0:
                 animation_cmp.custom_animation("hurt")
-                possessed_anim_player.play("hurt")
+                hurt_anim_player.play("hurt")
             else:
                 animation_cmp.custom_animation("exhausted")
                 await animation_cmp.animation_finished
@@ -52,14 +53,14 @@ func _physics_process(_delta: float) -> void:
     if not possessed_timer.is_stopped() and possessed_timer.time_left < 3:
         possessed_anim_player.play("possessed_fast")
     
-    if gun_inp_cmp.shoot and not disabled:
+    if gun_inp_cmp.shoot and not disabled and stats.hp > 0:
         animation_cmp.shoot()
         if gun_inp_cmp.shoot_vector != Vector2.ZERO:
             gun_cmp.shoot(gun_inp_cmp.shoot_vector, projectile_spawn)
             gun_inp_cmp.shoot = false
             gun_inp_cmp.shoot_vector = Vector2.ZERO
 
-    if animation_cmp.current_animation == "shoot" or disabled:
+    if animation_cmp.current_animation == "shoot" or disabled or stats.hp == 0:
         movement_cmp.decelerate(self)
     elif not possessed_timer.is_stopped():
         movement_cmp.accelerate(self, move_inp_cmp.move_vector.rotated(deg_to_rad(180)))

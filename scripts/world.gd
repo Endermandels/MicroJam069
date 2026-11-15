@@ -27,6 +27,7 @@ func loss() -> void:
         add_child(lose_screen.instantiate())
         lost = true
         player.stop()
+        spawner.stop()
 
 func win() -> void:
     if not lost:
