@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://btybkfamo24s4"]
+
+[ext_resource type="Script" uid="uid://dfyk303u1k71g" path="res://components/fade_in_component.gd" id="1_wv5lq"]
+
+[node name="WinScreen" type="CanvasLayer" unique_id=509666913]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=977903076]
+offset_left = 80.0
+offset_top = 88.0
+offset_right = 283.0
+offset_bottom = 155.0
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=781480159]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "You Win!"
+
+[node name="FadeInComponent" type="Node" parent="." unique_id=1473143446 node_paths=PackedStringArray("target")]
+script = ExtResource("1_wv5lq")
+delay = 0.5
+duration = 0.5
+target = NodePath("../PanelContainer")
+metadata/_custom_type_script = "uid://dfyk303u1k71g"

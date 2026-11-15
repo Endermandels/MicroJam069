@@ -13,19 +13,25 @@ class_name Spawner
 @export_group("Resources")
 @export var spawnables: Array[PackedScene]
 
+var disabled: bool = false
+
 func _ready() -> void:
-	start_spawn_timer()
+    start_spawn_timer()
 
 func start_spawn_timer() -> void:
-	var min_interval = max(spawn_interval - spawn_interval_variance / 2, 0)
-	var max_interval = max(spawn_interval + spawn_interval_variance / 2, 0)
-	var timer := get_tree().create_timer(randf_range(min_interval, max_interval))
-	timer.timeout.connect(spawn)
+    var min_interval = max(spawn_interval - spawn_interval_variance / 2, 0)
+    var max_interval = max(spawn_interval + spawn_interval_variance / 2, 0)
+    var timer := get_tree().create_timer(randf_range(min_interval, max_interval))
+    timer.timeout.connect(spawn)
 
 func spawn() -> void:
-	var spawned: Creature = spawnables.pick_random().instantiate()
-	if spawned.ai_cmp.global_player_ref:
-		spawned.ai_cmp.player_ref = player
-	spawned.global_position = spawn_points_parent.get_children().pick_random().global_position
-	spawn_node.add_child(spawned)
-	start_spawn_timer()
+    if not disabled:
+        var spawned: Creature = spawnables.pick_random().instantiate()
+        if spawned.ai_cmp.global_player_ref:
+            spawned.ai_cmp.player_ref = player
+        spawned.global_position = spawn_points_parent.get_children().pick_random().global_position
+        spawn_node.add_child(spawned)
+        start_spawn_timer()
+
+func stop() -> void:
+    disabled = true

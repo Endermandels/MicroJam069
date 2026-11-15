@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b7rcful5nwfsc" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://mef4u5e46q0v" path="res://scenes/fox.tscn" id="2_rwgxs"]
 [ext_resource type="Texture2D" uid="uid://dfl82ljcg5tgr" path="res://assets/visuals/tilesets/Forest Tileset.png" id="3_71j4m"]
+[ext_resource type="PackedScene" uid="uid://btybkfamo24s4" path="res://scenes/win_screen.tscn" id="3_e3hyu"]
 [ext_resource type="Texture2D" uid="uid://kgjt0yhv6nvr" path="res://assets/visuals/tilesets/Forest Trees Tileset.png" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="6_qfnet"]
 [ext_resource type="PackedScene" uid="uid://dnqb3egtx6ug8" path="res://scenes/witch.tscn" id="6_w7kh3"]
@@ -320,11 +321,14 @@ terrain_set_0/terrain_0/name = "Trees"
 terrain_set_0/terrain_0/color = Color(1, 0.34509805, 0.2509804, 1)
 sources/0 = SubResource("TileSetAtlasSource_71j4m")
 
-[node name="World" type="Node2D" unique_id=2044448185 node_paths=PackedStringArray("player", "pumpkin")]
+[node name="World" type="Node2D" unique_id=2044448185 node_paths=PackedStringArray("player", "pumpkin", "win_timer", "spawner")]
 script = ExtResource("1_4mrxx")
 player = NodePath("YSorted/Player")
 pumpkin = NodePath("Pumpkin")
+win_timer = NodePath("WinTimer")
+spawner = NodePath("Spawner")
 lose_screen = ExtResource("8_4mrxx")
+win_screen = ExtResource("3_e3hyu")
 
 [node name="DeathHitboxes" type="Node2D" parent="." unique_id=1775102686]
 
@@ -440,3 +444,8 @@ tile_set = SubResource("TileSet_di8lm")
 
 [node name="Pumpkin" parent="." unique_id=1647926657 instance=ExtResource("7_i7141")]
 position = Vector2(288, 120)
+
+[node name="WinTimer" type="Timer" parent="." unique_id=1250603582]
+wait_time = 90.0
+one_shot = true
+autostart = true
