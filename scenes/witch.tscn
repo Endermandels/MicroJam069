@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://dnqb3egtx6ug8"]
+
+[ext_resource type="Texture2D" uid="uid://dpmeaghpouyca" path="res://assets/visuals/characters/Witch Sprite Sheet.png" id="1_hgjeu"]
+[ext_resource type="Script" uid="uid://cswkimor8w2uq" path="res://scripts/creature.gd" id="1_qrkn2"]
+[ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="2_xk447"]
+[ext_resource type="Script" uid="uid://hd2k5qds8mie" path="res://scripts/ai_component.gd" id="3_53435"]
+[ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="4_qrkn2"]
+[ext_resource type="Script" uid="uid://pjsf6ev8sjh7" path="res://components/hurtbox.gd" id="5_53435"]
+
+[sub_resource type="Animation" id="Animation_xk447"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vid1f"]
+resource_name = "cough"
+length = 0.3333416766010225
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [31, 32, 33, 30]
+}
+
+[sub_resource type="Animation" id="Animation_1g4oy"]
+resource_name = "faint"
+length = 0.8333416915021836
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334, 0.6666667, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+}
+
+[sub_resource type="Animation" id="Animation_53435"]
+resource_name = "idle"
+length = 0.666683353202045
+loop_mode = 1
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_qrkn2"]
+resource_name = "run"
+length = 0.3333416766010225
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [50, 51, 52, 53]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vid1f"]
+_data = {
+&"RESET": SubResource("Animation_xk447"),
+&"cough": SubResource("Animation_vid1f"),
+&"faint": SubResource("Animation_1g4oy"),
+&"idle": SubResource("Animation_53435"),
+&"run": SubResource("Animation_qrkn2")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_di8lm"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di8lm"]
+radius = 18.027756
+
+[node name="Witch" type="CharacterBody2D" unique_id=1161243924 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "spray_hurtbox", "stink_hurtbox")]
+script = ExtResource("1_qrkn2")
+ai_cmp = NodePath("AIComponent")
+movement_cmp = NodePath("MovementComponent")
+animation_cmp = NodePath("AnimationComponent")
+spray_hurtbox = NodePath("SprayHurtbox")
+stink_hurtbox = NodePath("StinkHurtbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1067763952]
+position = Vector2(0, -16)
+texture = ExtResource("1_hgjeu")
+hframes = 10
+vframes = 6
+
+[node name="AnimationComponent" type="AnimationPlayer" parent="." unique_id=787662996 node_paths=PackedStringArray("sprite")]
+libraries/ = SubResource("AnimationLibrary_vid1f")
+autoplay = &"idle"
+script = ExtResource("2_xk447")
+sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://bam0t1cu515kb"
+
+[node name="AIComponent" type="Node" parent="." unique_id=1771217211 node_paths=PackedStringArray("body", "movement_cmp", "animation_cmp")]
+script = ExtResource("3_53435")
+global_player_ref = true
+spray_reaction = 3
+stink_reaction = 1
+body = NodePath("..")
+movement_cmp = NodePath("../MovementComponent")
+animation_cmp = NodePath("../AnimationComponent")
+metadata/_custom_type_script = "uid://hd2k5qds8mie"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=1000117574]
+script = ExtResource("4_qrkn2")
+deceleration = 0.05
+max_speed = 75.0
+metadata/_custom_type_script = "uid://nq7xqsfj83rt"
+
+[node name="SprayHurtbox" type="Area2D" parent="." unique_id=387730767]
+visible = false
+collision_layer = 0
+script = ExtResource("5_53435")
+metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SprayHurtbox" unique_id=1792833604]
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_di8lm")
+
+[node name="StinkHurtbox" type="Area2D" parent="." unique_id=32094337]
+visible = false
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("5_53435")
+metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StinkHurtbox" unique_id=1001314637]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_di8lm")

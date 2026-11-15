@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 	animation_cmp.handle_facing_direction(self)
 
 func _physics_process(_delta: float) -> void:
-	if death_hurtbox.stored_hitbox != null:
+	if death_hurtbox != null and death_hurtbox.stored_hitbox != null:
 		queue_free()
 
 	ai_cmp.handle_spray_hurtbox(spray_hurtbox)

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dfl82ljcg5tgr" path="res://assets/visuals/tilesets/Forest Tileset.png" id="3_71j4m"]
 [ext_resource type="Texture2D" uid="uid://kgjt0yhv6nvr" path="res://assets/visuals/tilesets/Forest Trees Tileset.png" id="4_k0juu"]
 [ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://dnqb3egtx6ug8" path="res://scenes/witch.tscn" id="6_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://dmr8uuvix7il2" path="res://scenes/pumpkin.tscn" id="7_i7141"]
 [ext_resource type="PackedScene" uid="uid://dhu3hinomju0f" path="res://scenes/lose_screen.tscn" id="8_4mrxx"]
 
@@ -378,7 +379,7 @@ spawn_interval = 1.0
 player = NodePath("../YSorted/Player")
 spawn_node = NodePath("../YSorted/CreatureSpawnArea")
 spawn_points_parent = NodePath(".")
-spawnables = Array[PackedScene]([ExtResource("2_rwgxs")])
+spawnables = Array[PackedScene]([ExtResource("2_rwgxs"), ExtResource("6_w7kh3")])
 
 [node name="Node2D" type="Node2D" parent="Spawner" unique_id=1356027716]
 position = Vector2(638, 262)

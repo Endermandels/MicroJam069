@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://ydnw3dklp4fx"]
+
+[ext_resource type="Script" uid="uid://cswkimor8w2uq" path="res://scripts/creature.gd" id="1_bbnym"]
+[ext_resource type="Texture2D" uid="uid://cax4tal5mjbdc" path="res://assets/visuals/characters/Ghost_Sprite_Sheet.png" id="2_veat2"]
+[ext_resource type="Script" uid="uid://bam0t1cu515kb" path="res://components/animation_component.gd" id="3_5mfnq"]
+[ext_resource type="Script" uid="uid://hd2k5qds8mie" path="res://scripts/ai_component.gd" id="4_lv6vd"]
+[ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="5_sv5gc"]
+
+[sub_resource type="Animation" id="Animation_lv6vd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sv5gc"]
+resource_name = "idle"
+length = 0.583341684051603
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_wj1r3"]
+resource_name = "run"
+length = 0.583341684051603
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_seks5"]
+resource_name = "spawn"
+length = 0.8333416915021836
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334, 0.6666667, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4pqta"]
+_data = {
+&"RESET": SubResource("Animation_lv6vd"),
+&"idle": SubResource("Animation_sv5gc"),
+&"run": SubResource("Animation_wj1r3"),
+&"spawn": SubResource("Animation_seks5")
+}
+
+[node name="Ghost" type="CharacterBody2D" unique_id=1416811418 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp")]
+script = ExtResource("1_bbnym")
+ai_cmp = NodePath("AIComponent")
+movement_cmp = NodePath("MovementComponent")
+animation_cmp = NodePath("AnimationComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1780079551]
+position = Vector2(0, -16)
+texture = ExtResource("2_veat2")
+hframes = 10
+vframes = 14
+
+[node name="AnimationComponent" type="AnimationPlayer" parent="." unique_id=616623870 node_paths=PackedStringArray("sprite")]
+libraries/ = SubResource("AnimationLibrary_4pqta")
+autoplay = &"spawn"
+script = ExtResource("3_5mfnq")
+sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://bam0t1cu515kb"
+
+[node name="AIComponent" type="Node" parent="." unique_id=1915338368 node_paths=PackedStringArray("body", "movement_cmp")]
+script = ExtResource("4_lv6vd")
+global_player_ref = true
+spray_reaction = 1
+stink_reaction = 2
+body = NodePath("..")
+movement_cmp = NodePath("../MovementComponent")
+metadata/_custom_type_script = "uid://hd2k5qds8mie"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=699939657]
+script = ExtResource("5_sv5gc")
+max_speed = 150.0
+metadata/_custom_type_script = "uid://nq7xqsfj83rt"

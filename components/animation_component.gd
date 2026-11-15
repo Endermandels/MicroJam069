@@ -5,9 +5,10 @@ class_name AnimationComponent
 @export var sprite: Sprite2D
 
 var anim_lock: bool = false
+var disabled: bool = false
 
 func handle_facing_direction(body: CharacterBody2D) -> void:
-	if not anim_lock:
+	if not anim_lock and not disabled:
 		var ang: float = rad_to_deg(body.velocity.angle())
 		
 		if body.velocity.length() > 10 and current_animation != "run":
@@ -25,8 +26,17 @@ func handle_facing_direction(body: CharacterBody2D) -> void:
 			sprite.flip_h = true
 
 func shoot() -> void:
-	if current_animation != "shoot":
-		play("shoot")
+	custom_animation("shoot")
+
+func cough() -> void:
+	custom_animation("cough")
+
+func faint() -> void:
+	custom_animation("faint")
+
+func custom_animation(anim_name: String):
+	if current_animation != anim_name and not disabled:
+		play(anim_name)
 		anim_lock = true
 		await animation_finished
 		anim_lock = false
