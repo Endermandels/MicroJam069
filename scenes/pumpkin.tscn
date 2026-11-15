@@ -56,7 +56,6 @@ anim_player = NodePath("AnimationPlayer")
 stats = NodePath("Stats")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1523646381]
-visible = false
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("2_ch6vm")

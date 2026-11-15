@@ -856,9 +856,9 @@ script = ExtResource("1_nsean")
 pumpkin_health_bar = NodePath("PumpkinHealthBar")
 
 [node name="PumpkinHealthBar" type="ProgressBar" parent="." unique_id=399298101]
-offset_left = 8.0
+offset_left = 64.0
 offset_top = 8.0
-offset_right = 224.0
+offset_right = 280.0
 offset_bottom = 12.0
 theme = SubResource("Theme_di8lm")
 value = 100.0
