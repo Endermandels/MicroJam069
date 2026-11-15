@@ -12,12 +12,18 @@ class_name Player
 @export var possessed_anim_player: AnimationPlayer
 @export var gun_cmp: GunComponent
 @export var ghost_hurtbox: Hurtbox
+@export var attack_hurtbox: Hurtbox
 @export var possessed_timer: Timer
+@export var stats: Stats
+@export var health_bar: ProgressBar
+
+signal player_dead
 
 var disabled: bool = false
 
 func _ready() -> void:
     possessed_timer.timeout.connect(possessed_anim_player.play.bind("RESET"))
+    health_bar.max_value = stats.max_hp
 
 func _process(_delta: float) -> void:
     if not disabled:
@@ -28,6 +34,20 @@ func _physics_process(_delta: float) -> void:
         possessed_timer.start()
         animation_cmp.custom_animation("possessed")
         possessed_anim_player.play("possessed")
+    
+    if attack_hurtbox.stored_hitbox != null:
+        var dmg = attack_hurtbox.stored_hitbox.stats.dmg
+        attack_hurtbox.stored_hitbox = null
+        if possessed_anim_player.current_animation != "hurt":
+            stats.hp -= dmg
+            health_bar.value = stats.hp
+            if stats.hp > 0:
+                animation_cmp.custom_animation("hurt")
+                possessed_anim_player.play("hurt")
+            else:
+                animation_cmp.custom_animation("exhausted")
+                await animation_cmp.animation_finished
+                player_dead.emit()
 
     if not possessed_timer.is_stopped() and possessed_timer.time_left < 3:
         possessed_anim_player.play("possessed_fast")

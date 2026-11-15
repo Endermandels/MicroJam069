@@ -122,6 +122,9 @@ func handle_attack_hitbox(hitbox: Hitbox) -> void:
     if hitbox != null and hitbox.hit_something:
         if state != State.FLEEING and state != State.FAINTING and state != State.COUGHING:
             state = State.ATTACKING
+            hitbox.hit_something = false
+    elif state == State.ATTACKING:
+        state = State.CHASING
 
 func determine_ghost_spawn() -> bool:
     return randf() < chance_to_spawn_ghost

@@ -15,7 +15,8 @@ var won: bool = false
 var lost: bool = false
 
 func _ready() -> void:
-    pumpkin.pumpkin_gone.connect(loss)
+    pumpkin.pumpkin_dead.connect(loss)
+    player.player_dead.connect(loss)
     win_timer.timeout.connect(win)
 
 func _process(_delta: float) -> void:

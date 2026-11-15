@@ -145,7 +145,7 @@ animation_cmp = NodePath("AnimationComponent")
 spray_hurtbox = NodePath("SprayHurtbox")
 stink_hurtbox = NodePath("StinkHurtbox")
 death_hurtbox = NodePath("DeathHurtbox")
-attack_hitbox = NodePath("PumpkinHitbox")
+attack_hitbox = NodePath("AttackHitbox")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=655138247]
 modulate = Color(1, 1, 1, 0.43529412)
@@ -213,21 +213,22 @@ metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_ywg1y")
 
-[node name="PumpkinHitbox" type="Area2D" parent="." unique_id=2034634261 node_paths=PackedStringArray("stats")]
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=2034634261 node_paths=PackedStringArray("stats")]
 visible = false
-collision_layer = 16
+collision_layer = 64
 collision_mask = 0
 script = ExtResource("7_m5q2l")
 stats = NodePath("Stats")
 metadata/_custom_type_script = "uid://b10w4fm8kyuou"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PumpkinHitbox" unique_id=1715658720]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=1715658720]
 position = Vector2(0, -8)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_di8lm")
 
-[node name="Stats" type="Node" parent="PumpkinHitbox" unique_id=1411854858]
+[node name="Stats" type="Node" parent="AttackHitbox" unique_id=1411854858]
 script = ExtResource("8_0ael4")
+dmg = 15
 metadata/_custom_type_script = "uid://1b4k5q3xypiq"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1758339217]

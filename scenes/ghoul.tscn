@@ -176,8 +176,7 @@ metadata/_custom_type_script = "uid://bam0t1cu515kb"
 [node name="AIComponent" type="Node" parent="." unique_id=376470851 node_paths=PackedStringArray("body", "movement_cmp")]
 script = ExtResource("3_fxkcu")
 global_pumpkin_ref = true
-stink_reaction = 1
-fleeing_speed = 300.0
+fleeing_speed = 250.0
 body = NodePath("..")
 movement_cmp = NodePath("../MovementComponent")
 metadata/_custom_type_script = "uid://hd2k5qds8mie"
@@ -230,7 +229,6 @@ shape = SubResource("CircleShape2D_5cgdp")
 
 [node name="Stats" type="Node" parent="PumpkinHitbox" unique_id=1546534302]
 script = ExtResource("8_waqgy")
-dmg = 1
 metadata/_custom_type_script = "uid://1b4k5q3xypiq"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=940016826]

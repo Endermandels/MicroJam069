@@ -7,7 +7,7 @@ class_name Pumpkin
 @export var stats: Stats
 @export var sprite: Sprite2D
 
-signal pumpkin_gone
+signal pumpkin_dead
 
 var disabled: bool = false
 
@@ -17,7 +17,7 @@ func _physics_process(_delta: float) -> void:
         if stats.hp > 0:
             start_invincibility()
         else:
-            pumpkin_gone.emit()
+            pumpkin_dead.emit()
             queue_free()
 
 func take_hit() -> void:

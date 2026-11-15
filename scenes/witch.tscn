@@ -171,7 +171,7 @@ metadata/_custom_type_script = "uid://bam0t1cu515kb"
 
 [node name="AIComponent" type="Node" parent="." unique_id=1771217211 node_paths=PackedStringArray("body", "movement_cmp")]
 script = ExtResource("3_53435")
-global_player_ref = true
+global_pumpkin_ref = true
 spray_reaction = 2
 stink_reaction = 1
 body = NodePath("..")
@@ -206,6 +206,7 @@ position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_di8lm")
 
 [node name="PumpkinHitbox" type="Area2D" parent="." unique_id=1401642850 node_paths=PackedStringArray("stats")]
+visible = false
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("8_80ajc")
@@ -214,7 +215,7 @@ metadata/_custom_type_script = "uid://b10w4fm8kyuou"
 
 [node name="Stats" type="Node" parent="PumpkinHitbox" unique_id=77887837]
 script = ExtResource("9_tw4fk")
-dmg = 10
+dmg = 15
 metadata/_custom_type_script = "uid://1b4k5q3xypiq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PumpkinHitbox" unique_id=979526476]
