@@ -18,6 +18,9 @@ func _ready() -> void:
     pumpkin.pumpkin_gone.connect(loss)
     win_timer.timeout.connect(win)
 
+func _process(_delta: float) -> void:
+    Hud.update_time_left_label(win_timer.time_left)
+
 func loss() -> void:
     if not won:
         add_child(lose_screen.instantiate())

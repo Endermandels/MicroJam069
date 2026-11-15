@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://hd2k5qds8mie" path="res://scripts/ai_component.gd" id="3_53435"]
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="4_qrkn2"]
 [ext_resource type="Script" uid="uid://pjsf6ev8sjh7" path="res://components/hurtbox.gd" id="5_53435"]
+[ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="8_80ajc"]
+[ext_resource type="Script" uid="uid://1b4k5q3xypiq" path="res://components/stats.gd" id="9_tw4fk"]
 
 [sub_resource type="Animation" id="Animation_xk447"]
 length = 0.001
@@ -108,6 +110,9 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_di8lm"]
 radius = 18.027756
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywg1y"]
+radius = 6.0
+
 [node name="Witch" type="CharacterBody2D" unique_id=1161243924 node_paths=PackedStringArray("ai_cmp", "movement_cmp", "animation_cmp", "spray_hurtbox", "stink_hurtbox")]
 script = ExtResource("1_qrkn2")
 ai_cmp = NodePath("AIComponent")
@@ -135,7 +140,6 @@ script = ExtResource("3_53435")
 global_player_ref = true
 spray_reaction = 3
 stink_reaction = 1
-chance_to_spawn_ghost = 1.0
 body = NodePath("..")
 movement_cmp = NodePath("../MovementComponent")
 metadata/_custom_type_script = "uid://hd2k5qds8mie"
@@ -166,3 +170,19 @@ metadata/_custom_type_script = "uid://pjsf6ev8sjh7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StinkHurtbox" unique_id=1001314637]
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_di8lm")
+
+[node name="PumpkinHitbox" type="Area2D" parent="." unique_id=1401642850 node_paths=PackedStringArray("stats")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("8_80ajc")
+stats = NodePath("Stats")
+metadata/_custom_type_script = "uid://b10w4fm8kyuou"
+
+[node name="Stats" type="Node" parent="PumpkinHitbox" unique_id=77887837]
+script = ExtResource("9_tw4fk")
+dmg = 10
+metadata/_custom_type_script = "uid://1b4k5q3xypiq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PumpkinHitbox" unique_id=979526476]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_ywg1y")
