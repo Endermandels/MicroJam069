@@ -25,12 +25,12 @@ func _physics_process(_delta: float) -> void:
     ai_cmp.handle_attack_hitbox(attack_hitbox)
     ai_cmp.handle_spray_hurtbox(spray_hurtbox)
     ai_cmp.handle_stink_hurtbox(stink_hurtbox)
-    if ai_cmp.state == ai_cmp.State.COUGHING:
-        animation_cmp.cough()
     if ai_cmp.state == ai_cmp.State.FAINTING and not faint_started:
         faint()
     if ai_cmp.state == ai_cmp.State.ATTACKING:
         animation_cmp.custom_animation("attack")
+    if ai_cmp.state == ai_cmp.State.COUGHING:
+        animation_cmp.cough()
 
     movement_cmp.accelerate(self, ai_cmp.move_vector)
     

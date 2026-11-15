@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://nq7xqsfj83rt" path="res://components/movement_component.gd" id="2_eutib"]
 [ext_resource type="Script" uid="uid://b10w4fm8kyuou" path="res://components/hitbox.gd" id="4_6tuoh"]
 [ext_resource type="Texture2D" uid="uid://ch27dvkjym4yu" path="res://assets/visuals/fx/Water Projectile Sheet.png" id="4_8thdp"]
+[ext_resource type="AudioStream" uid="uid://b8b2rg81bwvi7" path="res://assets/sfx/hitHurt(1).wav" id="6_gbd23"]
+[ext_resource type="Script" uid="uid://bbnx8w5r7hah0" path="res://components/repetitive_sfx.gd" id="7_iqvhq"]
 
 [sub_resource type="Animation" id="Animation_eutib"]
 length = 0.001
@@ -49,6 +51,34 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"spawn_aoe"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"vary_pitch"
 }]
 }
 
@@ -119,3 +149,7 @@ metadata/_custom_type_script = "uid://b10w4fm8kyuou"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=56821605]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_neivv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2086324240]
+stream = ExtResource("6_gbd23")
+script = ExtResource("7_iqvhq")
