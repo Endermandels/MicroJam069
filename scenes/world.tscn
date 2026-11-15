@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dmr8uuvix7il2" path="res://scenes/pumpkin.tscn" id="7_i7141"]
 [ext_resource type="PackedScene" uid="uid://dhu3hinomju0f" path="res://scenes/lose_screen.tscn" id="8_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://fk1j4gstv0r1" path="res://scenes/ghoul.tscn" id="8_q5onr"]
+[ext_resource type="AudioStream" uid="uid://dm6v1fmao7xpa" path="res://assets/music/Mega Hyper Ultrastorm.mp3" id="13_jhx03"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_di8lm"]
 size = Vector2(66, 1472)
@@ -460,7 +461,8 @@ shape = SubResource("RectangleShape2D_di8lm")
 
 [node name="Spawner" type="Node" parent="." unique_id=1416020959 node_paths=PackedStringArray("player", "pumpkin", "spawn_node", "spawn_points_parent")]
 script = ExtResource("1_4wyf3")
-time_to_increase_spawn_rate = 7.0
+spawn_interval = 4.0
+time_to_increase_spawn_rate = 8.0
 increase_spawn_rate_variance = 0.25
 player = NodePath("../YSorted/Player")
 pumpkin = NodePath("../YSorted/Pumpkin")
@@ -538,3 +540,9 @@ tile_set = SubResource("TileSet_di8lm")
 wait_time = 90.0
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1901216109]
+stream = ExtResource("13_jhx03")
+volume_db = -7.298
+autoplay = true
+parameters/looping = true
